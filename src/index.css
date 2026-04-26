@@ -1,0 +1,145 @@
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@900&f[]=satoshi@400,500,700&f[]=bespoke-slab@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-slab: "Bespoke Slab", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-hot-pink: #FF3366;
+  --color-orange: #FF6B35;
+  --color-gold: #FFD600;
+  --color-teal: #2EC4B6;
+  --color-purple: #A259FF;
+  --color-green: #00C48C;
+  --color-navy: #0F172A;
+  --color-bg-white: #F8FAFC;
+}
+
+/* Light mode (default) */
+:root {
+  --bg:            #F8FAFC;
+  --surface:       #ffffff;
+  --surface-alt:   #F1F5F9;
+  --border:        #0F172A;
+  --shadow:        #0F172A;
+  --text-primary:  #0F172A;
+  --text-secondary:#0F172A;
+  --text-muted:    #64748B;
+  --nav-bg:        #ffffff;
+  --card-bg:       #ffffff;
+  --input-bg:      #ffffff;
+  --dot-color:     #0F172A;
+  --dot-opacity:   0.08;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --bg:            #0F172A;
+  --surface:       #1E293B;
+  --surface-alt:   #334155;
+  --border:        #E2E8F0;
+  --shadow:        #000000;
+  --text-primary:  #F1F5F9;
+  --text-secondary:#CBD5E1;
+  --text-muted:    #94A3B8;
+  --nav-bg:        #1E293B;
+  --card-bg:       #1E293B;
+  --input-bg:      #0F172A;
+  --dot-color:     #F1F5F9;
+  --dot-opacity:   0.04;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    @apply font-sans antialiased transition-colors duration-300;
+  }
+  
+  body::before {
+    content: "";
+    @apply fixed inset-0 pointer-events-none;
+    background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: var(--dot-opacity);
+    z-index: -1;
+  }
+
+  /* Prevent horizontal overflow */
+  * { box-sizing: border-box; }
+  body { overflow-x: hidden; }
+  img, svg { max-width: 100% !important; height: auto; }
+
+  /* Page Wrapper */
+  .page-wrapper {
+    padding: 0 16px;
+  }
+  @media (min-width: 768px) {
+    .page-wrapper { padding: 0 32px; }
+  }
+  @media (min-width: 1280px) {
+    .page-wrapper { 
+      padding: 0 64px; 
+      max-width: 1440px; 
+      margin: 0 auto; 
+    }
+  }
+
+  /* Touch targets */
+  button, a, [role="button"], .clickable {
+    min-height: 44px;
+    min-width: 44px;
+    color: inherit;
+  }
+
+  /* Typography scale */
+  @media (max-width: 767px) {
+    .display-xl   { font-size: 40px !important; }
+    .display-lg   { font-size: 32px !important; }
+    .display-md   { font-size: 24px !important; }
+    .section-head { font-size: 28px !important; }
+    
+    .display-heading { font-size: 40px !important; }
+    .section-heading { font-size: 28px !important; }
+    .card-title      { font-size: 18px !important; }
+    body             { font-size: 14px !important; }
+  }
+}
+
+.neo-border {
+  border: 4px solid var(--border);
+}
+
+.neo-shadow {
+  box-shadow: 8px 8px 0px var(--shadow);
+}
+
+.neo-shadow-hover:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px var(--shadow);
+}
+
+.neo-shadow-active:active {
+  transform: translate(0, 0);
+  box-shadow: 4px 4px 0px var(--shadow);
+}
+
+.text-stroke {
+  -webkit-text-stroke: 2px var(--border);
+  color: transparent;
+}
+
+.bg-surface {
+  background-color: var(--surface);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
